@@ -4,7 +4,6 @@
  */
 package autoacceso;
 
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,7 +16,5 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        JOptionPane.showMessageDialog(null, "Salida Registrada, Gracias por visitarnos");
     }
 }
