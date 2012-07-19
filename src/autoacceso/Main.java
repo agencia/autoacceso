@@ -4,6 +4,8 @@
  */
 package autoacceso;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author byde
@@ -15,5 +17,6 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        JOptionPane.showMessageDialog(null, "La entrada ha sido guardada.");
     }
 }
