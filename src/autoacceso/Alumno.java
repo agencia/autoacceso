@@ -8,7 +8,7 @@ package autoacceso;
  *
  * @author Memoeslink
  */
-public class Alumno {
+public class Alumno implements Bean{
     private int idAlumno;
     private int idCarrera;
     private String matricula;

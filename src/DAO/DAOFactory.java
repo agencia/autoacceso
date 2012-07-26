@@ -14,7 +14,7 @@ import java.sql.SQLException;
  */
 public class DAOFactory {
     private static String cadenaConexion = "jdbc:mysql://localhost/";
-    private static String baseDeDatos = "upa";
+    private static String baseDeDatos = "lat";
     private static String usuario = "root";
     private static String password = "";
 

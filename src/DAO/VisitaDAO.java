@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,7 +40,6 @@ public class VisitaDAO implements OperacionesDAO{
         }
 
         ArrayList mi_lista = new ArrayList();
-        Visita visitaCall = new Visita();
         Connection conexion = DAOFactory.getConexion();
 
         try {
@@ -47,13 +47,51 @@ public class VisitaDAO implements OperacionesDAO{
             ResultSet query = llamada.executeQuery(SQL.findRegistro.concat(a + "'"));
             while(query.next())
             {
-                System.out.println("Motivo de entrada: " + query.getString("idMotivoEntrada"));
                 mi_lista.add(new Visita(query.getInt("IdRegistro"), query.getInt("IdMotivoEntrada"), query.getInt("IdMotivoSalida"), query.getString("MotivoSalida"), query.getInt("IdEmpleado"), query.getInt("IdAlumno"), query.getInt("IdVisitante"), query.getString("Aula"), query.getInt("IdClase"), query.getString("FechaHoraEntrada"), query.getString("FechaHoraSalida")));
+                
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         } 
         return mi_lista;
+    }
+    
+    public boolean showLastAdded() {
+        boolean hecho = false;
+        int contar = 0;
+        Connection conexion = DAOFactory.getConexion();
+        
+        try {
+            Statement llamada = (Statement) conexion.createStatement();
+            ResultSet count = llamada.executeQuery(SQL.showRegistro);
+            while(count.next())
+            {
+                if(count.getInt("IdRegistro")>contar)
+                    contar = count.getInt("IdRegistro");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        try {
+            Statement llamada2 = (Statement) conexion.createStatement();
+            ResultSet query = llamada2.executeQuery(SQL.findRegistro.concat(contar + "'"));
+            while(query.next())
+            {
+                String timedate = "";
+                String add = query.getString("FechaHoraEntrada");
+
+                for(int z = 0; z<add.length() - 2; z++)
+                {
+                    timedate = timedate.concat(Character.toString(add.charAt(z)));
+                }
+                JOptionPane.showMessageDialog(null, "Adelante, ya puede pasar.\nFecha y hora de acceso: " + timedate);
+            }
+            hecho = true;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return hecho;
     }
 
     @Override
@@ -63,17 +101,8 @@ public class VisitaDAO implements OperacionesDAO{
         PreparedStatement ps = null;
         try {
             ps = conexion.prepareStatement(SQL.insertarRegistro);
-            ps.setInt(1, visita.getIdRegistro());
-            ps.setInt(2, visita.getIdMotivoEntrada());
-            ps.setInt(3, visita.getIdMotivoSalida());
-            ps.setString(4, visita.getMotivoSalida());
-            ps.setInt(5, visita.getIdEmpleado());
-            ps.setInt(6, visita.getIdAlumno());
-            ps.setInt(7, visita.getIdVisitante());
-            ps.setString(8, visita.getAula());
-            ps.setInt(9, visita.getIdClase());
-            ps.setString(10, visita.getFechaHoraEntrada());
-            ps.setString(11, visita.getFechaHoraSalida());
+            ps.setInt(1, visita.getIdMotivoEntrada());
+            ps.setString(2, visita.getAula());
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(VisitaDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,5 +124,4 @@ public class VisitaDAO implements OperacionesDAO{
     public Bean find(int id) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
 }

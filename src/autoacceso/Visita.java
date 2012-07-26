@@ -8,7 +8,7 @@ package autoacceso;
  *
  * @author Memoeslink
  */
-public class Visita {
+public class Visita implements Bean{
     private int idRegistro;
     private int idMotivoEntrada;
     private int idMotivoSalida;

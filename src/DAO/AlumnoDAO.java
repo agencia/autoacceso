@@ -24,10 +24,10 @@ public class AlumnoDAO implements OperacionesDAO{
 
     @Override
     public ArrayList select() {
-        String a = "";
+        String b = "";
         Scanner scantool = new Scanner(System.in);
         System.out.println("Matrícula de alumno: ");
-        a = scantool.nextLine();
+        b = scantool.nextLine();
         
         ArrayList mi_lista = new ArrayList();
         Alumno alumnoCall = new Alumno();
@@ -35,7 +35,7 @@ public class AlumnoDAO implements OperacionesDAO{
 
         try {
             Statement llamada = (Statement) conexion.createStatement();
-            ResultSet query = llamada.executeQuery(SQL.findAlumno.concat(a + "'"));
+            ResultSet query = llamada.executeQuery(SQL.findAlumno.concat(b + "'"));
             while(query.next())
             {
                 System.out.println("Nombre: " + query.getString("Nombre") + " " + query.getString("ApPaterno") + " " + query.getString("ApMaterno"));
