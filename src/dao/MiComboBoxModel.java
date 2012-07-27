@@ -13,7 +13,7 @@ public class MiComboBoxModel extends AbstractListModel implements ComboBoxModel 
       lista = (new MotivoEntradaDao()).select();
 //      if(lista)
 //      lista.add("No hay datos");
-      selection=(String) lista.get(1);
+      selection=(String) lista.get(0);
   }
   String selection = " ";
 
