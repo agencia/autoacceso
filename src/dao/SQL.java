@@ -10,9 +10,8 @@ package dao;
  */
 public class SQL {
     
-    public static String consultamotivos="SELECT MotivoEntrada FROM motivosentrada";
-    public static String nombreA="SELECT NombreAlumno where IdAlumno=?";
-    public static String nombreP="SELECT Nombre where IdEmpleado=?";
-    public static String nombreV="SELECT";
+    public static String consultamotivosA="SELECT MotivoEntrada FROM motivosentrada where IdMotivoEntrada=1 or IdMotivoEntrada=2";
+    public static String consultamotivosP="SELECT MotivoEntrada FROM motivosentrada where IdMotivoEntrada=3 or IdMotivoEntrada=4";
+    public static String consultamotivosV="SELECT MotivoEntrada FROM motivosentrada where IdMotivoEntrada=6 or IdMotivoEntrada=8";
     
 }

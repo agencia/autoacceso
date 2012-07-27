@@ -24,12 +24,26 @@ public class MotivoEntradaDao implements OperacionesDAO {
     public ArrayList select() {
         
         ArrayList hola=new ArrayList();
+        ArrayList nombre=new ArrayList();
+        MotivoEntrada objetoTipo= new MotivoEntrada();
         
         Connection conexion = DAOFactory.getConexion();
-        PreparedStatement ps=null;
-        ResultSet rs = null;
+        PreparedStatement ps=null, qs=null;
+        ResultSet rs = null, ss=null;
         try {
-            ps=conexion.prepareStatement(SQL.consultamotivos);
+            if(objetoTipo.getTipo()==1)
+            {
+                 ps=conexion.prepareStatement(SQL.consultamotivosA);
+            }
+            else
+                if(objetoTipo.getTipo()==2)
+                {
+                       ps=conexion.prepareStatement(SQL.consultamotivosP);
+                }
+            else
+                
+                       ps=conexion.prepareStatement(SQL.consultamotivosV);    
+                
             rs = ps.executeQuery();
             while(rs.next()){
                //hola[1]=motivo.setMotivo(rs.getString("MotivoEntrada"));

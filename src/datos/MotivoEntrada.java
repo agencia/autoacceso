@@ -11,7 +11,7 @@ package datos;
 public class MotivoEntrada  implements Bean{
     
     private String motivo;
-    private int tipo;
+    private int tipo=1;
     
     public void MotivoEntrada(){
         
