@@ -58,10 +58,11 @@ public class BotonMotivo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//    NewJDialog bot = new NewJDialog();
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         NewJDialog a = new NewJDialog(this, rootPaneCheckingEnabled);
-        
+       
         a.setVisible(true);
         
         // TODO add your handling code here:
@@ -104,7 +105,7 @@ public class BotonMotivo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new MotivoSalida().setVisible(true);
+//                new MotivoSalida().setVisible(true);
             }
         });
     }

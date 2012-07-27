@@ -4,7 +4,11 @@
  */
 package autoacceso;
 
-import Vistas.MotivoSalida;
+//import DAO.CarreraDao;
+////import DAO.AlumnoDAO;
+//import DAO.EstudianteDAO;
+import DAO.Alumno;
+//import Vistas.MotivoSalida;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -21,7 +25,7 @@ public class Main {
         // TODO code application logic here
         Vistas.BotonMotivo x = new Vistas.BotonMotivo();
         x.setVisible(true);
-        MotivoSalida ventana = new MotivoSalida();
+//        MotivoSalida ventana = new MotivoSalida();
         
         
         Alumno Pepe=new Alumno();
@@ -35,12 +39,14 @@ public class Main {
         car.setClave("ISEI");
         car.setNombreCarrera("Ingeniería en Sistemas");
         Pepe.setObjeto(car);
-        EstudianteDAO estudiantedao=new EstudianteDAO();
-        CarreraDao carreraDAO =new CarreraDao();
-        AlumnoDAO alumnodao=new AlumnoDAO();
+//        EstudianteDAO estudiantedao=new EstudianteDAO();
+//        CarreraDao carreraDAO =new CarreraDao();
+//        AlumnoDAO alumnodao=new AlumnoDAO();
         Persona datos=new Persona();
-        carreraDAO.insert(car);
+//        carreraDAO.insert(car);
 //        estudiantedao.insert(estudiante);
-        alumnodao.insert(Pepe);
+//        alumnodao.insert(Pepe);
+        Motivos mot = new Motivos();
+//        mot.setMotivo("");
     }
 }

@@ -4,6 +4,8 @@
  */
 package Vistas;
 
+import DAO.MiComboBoxModel;
+
 /**
  *
  * @author Jose Daniel Noriega
@@ -17,6 +19,8 @@ public class NewJDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,7 +46,12 @@ public class NewJDialog extends javax.swing.JDialog {
 
         jLabel2.setText("Usted se ha autentificado como: ");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  }));
+        jComboBox1.setModel(new MiComboBoxModel());
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +126,11 @@ public class NewJDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+                // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -169,11 +183,25 @@ public class NewJDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
+    public javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the jComboBox1
+     */
+    public javax.swing.JComboBox getjComboBox1() {
+        return jComboBox1;
+    }
+
+    /**
+     * @param jComboBox1 the jComboBox1 to set
+     */
+    public void setjComboBox1(javax.swing.JComboBox jComboBox1) {
+        this.jComboBox1 = jComboBox1;
+    }
 }
