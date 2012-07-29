@@ -19,14 +19,6 @@ import javax.swing.JOptionPane;
  * @author Al3x
  */
 public class AccesoDAO implements OperacionesDAO{
-    
-    private String matricula;
-    private String contrasena;
-    
-    public AccesoDAO(String matricula, String contrasena){
-        this.contrasena = contrasena;
-        this.matricula = matricula;
-    }
 
     public AccesoDAO() {
 //        throw new UnsupportedOperationException("Not yet implemented");
@@ -68,6 +60,8 @@ public class AccesoDAO implements OperacionesDAO{
             ps = conexion.prepareStatement(SQL.getLogin);
             ps.setString(1, pass);
             ps.setString(2, id);
+            ps.setString(3, pass);
+            ps.setString(4, id);
             rs = ps.executeQuery();
             rs.next();
             op = rs.getInt(1); 
@@ -80,34 +74,5 @@ public class AccesoDAO implements OperacionesDAO{
         return op;
     }
 
-    /**
-     * @return the matricula
-     */
-    public String getMatricula() {
-        return matricula;
-    }
-
-    /**
-     * @param matricula the matricula to set
-     */
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
-
-    /**
-     * @return the contrasena
-     */
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    /**
-     * @param contrasena the contrasena to set
-     */
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
- 
     
 }
