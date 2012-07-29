@@ -4,6 +4,7 @@
  */
 package vista;
 
+import DAO.RegistroDAO;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.MediaTracker;
@@ -23,6 +24,11 @@ import javax.swing.JLabel;
  * @author Al3x
  */
 public class Principal extends javax.swing.JFrame {
+    private String num;
+    private int [] nume;
+    private String num2;
+    private String num3;
+    Timer timer = new Timer();
 
     /**
      * Creates new form Principal
@@ -30,6 +36,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         
+    nume = new int[3];
         
     }
 
@@ -83,11 +90,16 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("jLabel7");
+        RegistroDAO numero = new RegistroDAO();
+        nume = numero.find();
+        num = Integer.toString(nume[0]);
+        jLabel7.setText(num);
 
-        jLabel8.setText("jLabel8");
+        num2 = Integer.toString(nume[1]);
+        jLabel8.setText(num2);
 
-        jLabel9.setText("jLabel9");
+        num3 = Integer.toString(nume[2]);
+        jLabel9.setText(num3);
 
         String strDateFormat = "HH:mm:ss a";
         SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
@@ -126,7 +138,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel10))
-                .addGap(12, 345, Short.MAX_VALUE)
+                .addGap(12, 12, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addGap(21, 21, 21))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -224,6 +236,7 @@ public class Principal extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         AccesoClave nuevo = new AccesoClave();
         nuevo.setVisible(true);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     

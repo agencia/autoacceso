@@ -20,6 +20,7 @@ public interface OperacionesDAO {
     int insert(Bean bean);
     boolean delete(int id);
     boolean update(Bean bean);
-    Bean find(int id);
+    int[] find();
+    int findConfirm(String id, String pass);
 
 }

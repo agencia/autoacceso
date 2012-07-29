@@ -9,8 +9,8 @@ package DAO;
  * @author Al3x
  */
 public class SQL {
-    public static String insertarAlumno = "INSERT INTO alumnos (Matricula, Nombre, Parterno, Materno, Telefono, Fecha, idcarrera) VALUES (?,?,?,?,?,?,?);";
-    public static String insertarCarrera = "INSERT INTO carrera (clave, carrera) VALUES (?,?);";
-    public static String findCarrera = "SELECT * FROM carrera WHERE idcarrera = '?';";
-    public static String getIdcarreraByMatricula ="SELECT * FROM carrera WHERE clave like ?";
+
+    public static String getDentro = "SELECT count(idEmpleado) as empleados, COUNT(idAlumno) as alumnos, COUNT(idVisitante) as visitantes FROM `registro` WHERE FechaHoraSalida IS NULL AND Aula = ?";
+    public static String getLogin = "SELECT * FROM `alumnos` WHERE contrasena = MD5(?) AND `Matricula` = ?";
+    
 }
