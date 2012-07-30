@@ -48,12 +48,36 @@ public class VisitaDAO implements OperacionesDAO{
             while(query.next())
             {
                 mi_lista.add(new Visita(query.getInt("IdRegistro"), query.getInt("IdMotivoEntrada"), query.getInt("IdMotivoSalida"), query.getString("MotivoSalida"), query.getInt("IdEmpleado"), query.getInt("IdAlumno"), query.getInt("IdVisitante"), query.getString("Aula"), query.getInt("IdClase"), query.getString("FechaHoraEntrada"), query.getString("FechaHoraSalida")));
-                
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         } 
         return mi_lista;
+    }
+    
+    public boolean reliableShowLastAdded(int idx) {
+        Connection conexion = DAOFactory.getConexion();
+        try {
+            Statement llamada = (Statement) conexion.createStatement();
+            ResultSet query = llamada.executeQuery(SQL.findRegistro.concat(idx + "'"));
+            while(query.next())
+            {
+                String date = "", time = "";
+                String add = query.getString("FechaHoraEntrada");
+
+                for(int z = 0; z<add.length() - 2; z++)
+                {
+                    if(z>=0&&z<=10)
+                        date = date.concat(Character.toString(add.charAt(z)));
+                    else
+                        time = time.concat(Character.toString(add.charAt(z)));
+                }
+                JOptionPane.showMessageDialog(null, "Adelante, ya puede pasar.\nFecha de acceso: " + date + "\nHora de acceso: " + time);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return true;
     }
     
     public boolean showLastAdded() {
@@ -78,14 +102,17 @@ public class VisitaDAO implements OperacionesDAO{
             ResultSet query = llamada2.executeQuery(SQL.findRegistro.concat(contar + "'"));
             while(query.next())
             {
-                String timedate = "";
+                String date = "", time = "";
                 String add = query.getString("FechaHoraEntrada");
 
                 for(int z = 0; z<add.length() - 2; z++)
                 {
-                    timedate = timedate.concat(Character.toString(add.charAt(z)));
+                    if(z>=0&&z<=10)
+                        date = date.concat(Character.toString(add.charAt(z)));
+                    else
+                        time = time.concat(Character.toString(add.charAt(z)));
                 }
-                JOptionPane.showMessageDialog(null, "Adelante, ya puede pasar.\nFecha y hora de acceso: " + timedate);
+                JOptionPane.showMessageDialog(null, "Adelante, ya puede pasar.\nFecha de acceso: " + date + "\nHora de acceso: " + time);
             }
             hecho = true;
         } catch (SQLException ex) {
@@ -97,17 +124,22 @@ public class VisitaDAO implements OperacionesDAO{
     @Override
     public int insert(Bean bean) {
         Visita visita =  (Visita) bean;
+        int id = 0;
         Connection conexion = DAOFactory.getConexion();
         PreparedStatement ps = null;
         try {
-            ps = conexion.prepareStatement(SQL.insertarRegistro);
+            ps = conexion.prepareStatement(SQL.insertarRegistro, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, visita.getIdMotivoEntrada());
             ps.setString(2, visita.getAula());
-            ps.executeUpdate();
+            int done = ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys(); 
+            while(rs.next()){ 
+                id = rs.getInt(1);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(VisitaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return 1;
+        return id;
     }
 
     @Override
