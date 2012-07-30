@@ -12,6 +12,7 @@ public class SQL {
     
     public static String consultamotivos="SELECT MotivoSalida FROM motivossalida";
     public static String nombreA="SELECT NombreAlumno where IdAlumno=?";
+    public static String NombreAlumno="SELECT NombreAlumno from alumnos where Matricula=Variable";
 //    public static String nombreP="SELECT Nombre where IdEmpleado=?";
     public static String nombreV="SELECT";
     

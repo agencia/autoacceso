@@ -16,36 +16,36 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Samsung
+ * @author Jose Daniel Noriega
  */
-public class MotivosSalidaDAO implements OperacionesDAO {
+public class Nombres implements OperacionesDAO{
 
     @Override
     public ArrayList select() {
-        
-        ArrayList hola=new ArrayList();
+                ArrayList adios=new ArrayList();
         
         Connection conexion = DAOFactory.getConexion();
         PreparedStatement ps=null;
         ResultSet rs = null;
         try {
-            ps=conexion.prepareStatement(SQL.consultamotivos);
+            ps=conexion.prepareStatement(SQL.NombreAlumno);
             
             rs = ps.executeQuery();
             while(rs.next()){
                //hola[1]=motivo.setMotivo(rs.getString("MotivoEntrada"));
-                hola.add(rs.getString("MotivoSalida"));
+                adios.add(rs.getString("NombreAlumno"));
+                
             }
                 
         } catch (SQLException ex) {
             Logger.getLogger(Motivos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return hola;
+        return adios;
+//        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public int insert(Bean bean) {
-        
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -63,7 +63,5 @@ public class MotivosSalidaDAO implements OperacionesDAO {
     public Bean find(int id) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
-    
     
 }
