@@ -15,7 +15,8 @@ public class Alumno implements Bean{
     private String nombre;
     private String ape_pat;
     private String ape_mat;
-
+    private int tipousuario;
+    
     /**
      * @return the idAlumno
      */
@@ -109,9 +110,10 @@ public class Alumno implements Bean{
         this.ape_pat="";
         this.ape_mat="";
         this.idCarrera=0;
+        this.tipousuario=1;
     }
     
-    public Alumno(int idAlumno, String matricula, String nombre, String ape_pat, String ape_mat, int idCarrera)
+    public Alumno(int idAlumno, String matricula, String nombre, String ape_pat, String ape_mat, int idCarrera, int tipousuario)
     {
         this.idAlumno = idAlumno;
         this.matricula = matricula;
@@ -119,5 +121,20 @@ public class Alumno implements Bean{
         this.ape_pat = ape_pat;
         this.ape_mat = ape_mat;
         this.idCarrera = idCarrera;
+        this.tipousuario = tipousuario;
+    }
+
+    /**
+     * @return the tipousuario
+     */
+    public int getTipousuario() {
+        return tipousuario;
+    }
+
+    /**
+     * @param tipousuario the tipousuario to set
+     */
+    public void setTipousuario(int tipousuario) {
+        this.tipousuario = tipousuario;
     }
 }

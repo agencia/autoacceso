@@ -8,6 +8,7 @@ import autoacceso.Alumno;
 import autoacceso.Bean;
 import autoacceso.Visita;
 import com.mysql.jdbc.Statement;
+import datos.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -63,7 +64,7 @@ public class VisitaDAO implements OperacionesDAO{
             while(query.next())
             {
                 String date = "", time = "";
-                String add = query.getString("FechaHoraEntrada");
+                String add = query.getString("Fecha");
 
                 for(int z = 0; z<add.length() - 2; z++)
                 {
@@ -121,16 +122,35 @@ public class VisitaDAO implements OperacionesDAO{
         return hecho;
     }
 
-    @Override
-    public int insert(Bean bean) {
-        Visita visita =  (Visita) bean;
+    public int insert(Bean bean, Usuario usuario) {
+        Visita visita = (Visita) bean;
         int id = 0;
         Connection conexion = DAOFactory.getConexion();
         PreparedStatement ps = null;
         try {
-            ps = conexion.prepareStatement(SQL.insertarRegistro, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, visita.getIdMotivoEntrada());
-            ps.setString(2, visita.getAula());
+            switch(usuario.getTipo())
+            {
+                case 1:
+                    ps = conexion.prepareStatement(SQL.insertarRegistroE, Statement.RETURN_GENERATED_KEYS);
+                    ps.setInt(1, visita.getIdMotivoEntrada());
+                    ps.setInt(2, usuario.getId());
+                    ps.setString(3, visita.getAula());
+                    break;
+                case 2:
+                    ps = conexion.prepareStatement(SQL.insertarRegistroA, Statement.RETURN_GENERATED_KEYS);
+                    ps.setInt(1, visita.getIdMotivoEntrada());
+                    ps.setInt(2, usuario.getId());
+                    ps.setString(3, visita.getAula());
+                    break;
+                case 3:
+                    ps = conexion.prepareStatement(SQL.insertarRegistroV, Statement.RETURN_GENERATED_KEYS);
+                    ps.setInt(1, visita.getIdMotivoEntrada());
+                    ps.setInt(2, usuario.getId());
+                    ps.setString(3, visita.getAula());
+                    break;
+                default: ; break;
+            }
+            
             int done = ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys(); 
             while(rs.next()){ 
@@ -154,6 +174,11 @@ public class VisitaDAO implements OperacionesDAO{
 
     @Override
     public Bean find(int id) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public int insert(Bean bean) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

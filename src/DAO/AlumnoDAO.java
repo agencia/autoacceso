@@ -40,7 +40,7 @@ public class AlumnoDAO implements OperacionesDAO{
             while(query.next())
             {
                 System.out.println("Nombre: " + query.getString("Nombre") + " " + query.getString("ApPaterno") + " " + query.getString("ApMaterno"));
-                mi_lista.add(new Alumno(query.getInt("IdAlumno"), query.getString("Matricula"), query.getString("Nombre"), query.getString("ApPaterno"), query.getString("ApMaterno"), query.getInt("IdCarrera")));
+                mi_lista.add(new Alumno(query.getInt("IdAlumno"), query.getString("Matricula"), query.getString("Nombre"), query.getString("ApPaterno"), query.getString("ApMaterno"), query.getInt("IdCarrera"), 1));
             }
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -55,12 +55,11 @@ public class AlumnoDAO implements OperacionesDAO{
         PreparedStatement data = null;
         try {
             data = (PreparedStatement) conexion.prepareCall(SQL.insertarAlumno);
-            data.setInt(1, alumno.getIdAlumno());
-            data.setString(2, alumno.getMatricula());
-            data.setString(3, alumno.getNombre());
-            data.setString(4, alumno.getApe_pat());
-            data.setString(5, alumno.getApe_mat());
-            data.setInt(6, alumno.getIdCarrera());
+            data.setString(1, alumno.getMatricula());
+            data.setString(2, alumno.getNombre());
+            data.setString(3, alumno.getApe_pat());
+            data.setString(4, alumno.getApe_mat());
+            data.setInt(5, alumno.getIdCarrera());
             data.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoDAO.class.getName()).log(Level.SEVERE, null, ex);
