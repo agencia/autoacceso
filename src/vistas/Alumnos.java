@@ -2,10 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistas;
+package vistas1;
 
 import dao.MiComboBoxModel;
+import datos.MotivoEntrada;
+import datos.Usuario;
 import java.util.Date;
+import javax.swing.JOptionPane;
+import org.omg.CORBA.Request;
 
 /**
  *
@@ -16,6 +20,10 @@ public class Alumnos extends javax.swing.JFrame {
     /**
      * Creates new form Alumnos
      */
+    Usuario actualiza = new Usuario();
+    MiComboBoxModel selecciona= new MiComboBoxModel();
+    private int motivo;
+    
     public Alumnos() {
         initComponents();
         Actializar();
@@ -97,7 +105,7 @@ public class Alumnos extends javax.swing.JFrame {
 
         jLabel1.setText("BIENVENIDO");
 
-        jLabel2.setText("--Nombre--");
+        jLabel2.setText(actualiza.getNombre());
 
         jLabel3.setText("Foto");
 
@@ -173,6 +181,10 @@ public class Alumnos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        actualiza.setIdMotivoEntrada(motivo);
+        JOptionPane.showMessageDialog(null, " " + actualiza.getNombre() + " has seleccionado la opción de: "
+                + actualiza.getIdMotivoEntrada());
+        
         setVisible(false);
         
     }//GEN-LAST:event_jButton1ActionPerformed

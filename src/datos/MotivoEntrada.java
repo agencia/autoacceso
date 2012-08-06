@@ -11,7 +11,8 @@ package datos;
 public class MotivoEntrada  implements Bean{
     
     private String motivo;
-    private int tipo=2;
+    private int tipo=1;
+    private String nombre="Erick Iván Solana";
     
     public void MotivoEntrada(){
         
@@ -48,6 +49,20 @@ public class MotivoEntrada  implements Bean{
      */
     public void setTipo(int tipo) {
         this.tipo = tipo;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
 }

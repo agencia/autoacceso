@@ -2,7 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistas;
+package autoacceso;
+
+import dao.MiComboBoxModel;
+import datos.Usuario;
+import javax.swing.JOptionPane;
+import vistas1.Alumnos;
 
 /**
  *
@@ -17,5 +22,6 @@ public class main {
         // TODO code application logic here
         Alumnos hola=new Alumnos();
         hola.setVisible(true);
+        
     }
 }
