@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import DATOS.Bean;
+import Datos.Bean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,16 +42,16 @@ public class RegistroDAO implements OperacionesDAO{
     @Override
     public int[] find() {
         PreparedStatement ps = null;
+        LaboratorioDAO lab = new LaboratorioDAO();
         ResultSet rs = null;
         int [] op;
         op = new int [3];
-        
-        int lab = 102;
+
         Connection conexion = DAOFactory.getConexion();
         
         try{
             ps = conexion.prepareStatement(SQL.getDentro);
-            ps.setInt(1, lab);
+            ps.setInt(1, lab.regresar());
             rs = ps.executeQuery();
             rs.next();
             op[1] = rs.getInt("empleados");
@@ -67,8 +67,14 @@ public class RegistroDAO implements OperacionesDAO{
         return op;
     }
 
+
     @Override
-    public int findConfirm(String id, String pass) {
+    public int[] findConfirm(String id, String pass) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public int regresar() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

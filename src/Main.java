@@ -17,7 +17,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        vista.Principal ob = new vista.Principal();
+        Vistas.Principal ob = new Vistas.Principal();
         ob.setVisible(true);
     }
 }

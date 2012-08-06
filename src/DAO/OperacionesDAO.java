@@ -7,7 +7,7 @@ package DAO;
 
 
 
-import DATOS.Bean;
+import Datos.Bean;
 import java.util.ArrayList;
 
 /**
@@ -21,6 +21,7 @@ public interface OperacionesDAO {
     boolean delete(int id);
     boolean update(Bean bean);
     int[] find();
-    int findConfirm(String id, String pass);
+    int [] findConfirm(String id, String pass);
+    int regresar();
 
 }

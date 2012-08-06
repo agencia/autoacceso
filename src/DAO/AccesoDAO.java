@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import DATOS.Bean;
+import Datos.Bean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,12 +50,14 @@ public class AccesoDAO implements OperacionesDAO{
     }
 
     @Override
-    public int findConfirm(String id, String pass) {
+    public int[] findConfirm(String id, String pass) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection conexion = DAOFactory.getConexion();
-        int op = 0;
+        String o;
+        int op [] = {0,0};
 
+ 
         try{
             ps = conexion.prepareStatement(SQL.getLogin);
             ps.setString(1, pass);
@@ -64,7 +66,8 @@ public class AccesoDAO implements OperacionesDAO{
             ps.setString(4, id);
             rs = ps.executeQuery();
             rs.next();
-            op = rs.getInt(1); 
+            op[0] = rs.getInt(1);
+            op[1] = Integer.parseInt(rs.getString("tipo"));
         }
         catch(SQLException ex)
                 {
@@ -72,6 +75,11 @@ public class AccesoDAO implements OperacionesDAO{
                 }
         
         return op;
+    }
+
+    @Override
+    public int regresar() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     
